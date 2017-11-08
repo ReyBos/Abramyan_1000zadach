@@ -12,7 +12,7 @@ class Chapter14_3 {
 		//	Вывести массив на консоль
 		obj.Show(arr, "Массив случайных чисел: ");
 
-		//	Matrix47: поменять местами две строки k1 и k2
+		//	Matrix47: поменять местами две строки с номерами k1 и k2
 		/*
 		int k1 = 0;
 		int k2 = 1;
@@ -21,8 +21,14 @@ class Chapter14_3 {
 		*/
 
 		//	Matrix50: поменять минимальный и максимальный элемент в каждом столбце
+		/*
 		obj.ChangeMinMaxColumn(arr);
 		obj.Show(arr, "Массив с поменяными минимальными и максимальными элементами в каждом столбце: ");
+		*/
+
+		//	Matrix51: поменять местами минимальный и максимальный элементы массива
+		obj.ChangeMinMax(arr);
+		obj.Show(arr, "В массиве поменяны местами минимум и максимум: ");
 	}
 }
 
@@ -32,7 +38,7 @@ class Matrix {
 	void Fill(int[][] arr) {		
 		for (int i = 0; i < arr.length; i++) 
 			for (int j = 0; j < arr[i].length; j++) 
-				arr[i][j] = (int) (10 + Math.random() * 30);			
+				arr[i][j] = (int) (100 + Math.random() * 899);			
 	}
 
 	//	Выводит массив на консоль
@@ -42,10 +48,10 @@ class Matrix {
 			for (int j = 0; j < arr[i].length; j++) 				
 				System.out.print(arr[i][j] + " "); 			
 			System.out.println();
-		}
-		System.out.println();
+		}		
 	}
 
+	//	Matrix47	//
 	//	Меняет местами две строки
 	void ChangeLine(int[][] arr, int k1, int k2) {
 		for (int i = 0; i < arr[0].length; i++) {
@@ -55,6 +61,7 @@ class Matrix {
 		}
 	}
 
+	//	Matrix50	//
 	//	Меняет минимальный и максимальный элемент в каждом столбце
 	void ChangeMinMaxColumn(int[][] arr) {
 		for (int j = 0; j < arr[0].length; j++) {
@@ -91,4 +98,38 @@ class Matrix {
 		return pos;
 	}
 
+	//	Matrix51	//
+	//	Меняет местами минимальный и максимальный элемент матрицы
+	void ChangeMinMax(int[][] arr) {
+		MinMax(arr);
+		int chg = arr[minLine][minColumn];
+		arr[minLine][minColumn] = arr[maxLine][maxColumn];
+		arr[maxLine][maxColumn] = chg;
+	}
+
+	int minLine	= 0;		//	пизиция минимального элемента (строка)
+	int minColumn = 0;		//	пизиция минимального элемента (столбец)
+	int maxLine = 0;		//	пизиция максимального элемента (строка)
+	int maxColumn = 0;		//	пизиция максимального элемента (столбец)
+
+	//	Ищет минимальный и максимальный элементы массива
+	void MinMax(int[][] arr) {
+		int min = arr[0][0];
+		int max = arr[0][0];
+		minLine = minColumn = maxLine = maxColumn = 0;
+
+		for (int i = 0; i < arr.length; i++)
+			for (int j = 0; j < arr[i].length; j++) {
+				if (min > arr[i][j]) {
+					min = arr[i][j];
+					minLine = i;
+					minColumn = j;
+				}
+				else if (max < arr[i][j]) {
+					max = arr[i][j];
+					maxLine = i;
+					maxColumn = j;
+				}
+			}
+	}
 }
