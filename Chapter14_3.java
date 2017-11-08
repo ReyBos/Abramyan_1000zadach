@@ -2,8 +2,8 @@
 //	не следует использовать вспомогательные двумерные массивы
 class Chapter14_3 {
 	public static void main(String[] args) {
-		int m = 5;
-		int n = 6;
+		int m = 4;
+		int n = 5;
 		int[][] arr = new int[m][n];
 		
 		Matrix obj = new Matrix();
@@ -27,8 +27,14 @@ class Chapter14_3 {
 		*/
 
 		//	Matrix51: поменять местами минимальный и максимальный элементы массива
+		/*
 		obj.ChangeMinMax(arr);
 		obj.Show(arr, "В массиве поменяны местами минимум и максимум: ");
+		*/
+
+		//	Matrix55: поменять местами нижнюю и верхнюю половины матрицы, с четным числом строк
+		obj.ChangeTopBot(arr);
+		obj.Show(arr, "Поменяны местами верхняя и нижная половины матрицы: ");
 	}
 }
 
@@ -131,5 +137,20 @@ class Matrix {
 					maxColumn = j;
 				}
 			}
+	}
+
+	//	Matrix55	//
+	//	Меняет местами верхнюю половину массива с нижней
+	void ChangeTopBot(int[][] arr) {
+		int temp = 0;
+		int count = arr.length / 2;
+		for (int i = 0; i < (arr.length / 2); i++) {
+			for (int j = 0; j < arr[i].length; j++) {
+				temp = arr[i][j];
+				arr[i][j] = arr[count][j];
+				arr[count][j] = temp;
+			}
+			count++;
+		}
 	}
 }
