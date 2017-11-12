@@ -3,7 +3,7 @@
 class Chapter14_3 {
 	public static void main(String[] args) {
 		int m = 4;
-		int n = 5;
+		int n = 6;
 		int[][] arr = new int[m][n];
 		
 		Matrix obj = new Matrix();
@@ -40,9 +40,10 @@ class Chapter14_3 {
 
 		//	Matrix60: Зеркально отразить элементы матрицы относительно вертикальной
 		//	оси симметрии
+		
 		obj.VerticalMirror(arr);
 		obj.Show(arr, "Зеркально отраженная матрица, относительно вертикальной оси");
-
+				
 	}
 }
 
