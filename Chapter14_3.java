@@ -33,8 +33,16 @@ class Chapter14_3 {
 		*/
 
 		//	Matrix55: поменять местами нижнюю и верхнюю половины матрицы, с четным числом строк
+		/*
 		obj.ChangeTopBot(arr);
 		obj.Show(arr, "Поменяны местами верхняя и нижная половины матрицы: ");
+		*/
+
+		//	Matrix60: Зеркально отразить элементы матрицы относительно вертикальной
+		//	оси симметрии
+		obj.VerticalMirror(arr);
+		obj.Show(arr, "Зеркально отраженная матрица, относительно вертикальной оси");
+
 	}
 }
 
@@ -44,7 +52,7 @@ class Matrix {
 	void Fill(int[][] arr) {		
 		for (int i = 0; i < arr.length; i++) 
 			for (int j = 0; j < arr[i].length; j++) 
-				arr[i][j] = (int) (100 + Math.random() * 899);			
+				arr[i][j] = (int) (10 + Math.random() * 89);			
 	}
 
 	//	Выводит массив на консоль
@@ -151,6 +159,20 @@ class Matrix {
 				arr[count][j] = temp;
 			}
 			count++;
+		}
+	}
+
+	//	Matrix60	//
+	//	Отражает зеркально элементы матрицы относительно вертикальной оси симметрии
+	void VerticalMirror(int[][] arr) {
+		int k = arr[0].length - 1;
+		for (int i = 0; i < arr[0].length/2; i++) {
+			for (int j = 0; j < arr.length; j++) {
+				int temp = arr[j][i];
+				arr[j][i] = arr[j][k];
+				arr[j][k] = temp;
+			}
+			k--;
 		}
 	}
 }
