@@ -17,19 +17,38 @@ class Chapter15_4 {
 
 		//	String42: Найти количество слов, которые начинаются 
 		//	и заканчиваются одной и той же буквой
-		
+		/*
 		String str = "Арка  мышь аббревиатура рука спас Тест";
 		OperationsOnStrings obj = new OperationsOnStrings(str);
 		System.out.println("Исходная строка: \n" + str);
-		System.out.println("Количество слов с одинаковым началом и концом: " + obj.TheSameStartEnd());				
+		System.out.println("Количество слов с одинаковым началом и концом: " + obj.TheSameStartEnd());	
+		*/
+
+		//	String45:	Найти длину самого короткого слова
+		/*
+		String str = "Создаем класс котором объявляется массив для хранения очереди";
+		OperationsOnStrings obj = new OperationsOnStrings(str);
+		System.out.println("Исходная строка: \n" + str);
+		System.out.println("Длина самого короткого слова: " + obj.ShortestWord());
+		*/
+
+		//	String47:	Вывести строку с разделителем "." вместо пробелов
+		
+		String str = "Создаем класс в котором объявляется массив для хранения очереди";
+		OperationsOnStrings obj = new OperationsOnStrings(str);
+		System.out.println("Исходная строка: \n" + str);
+		obj.Delimiter(".");
+		System.out.println("Точки вместо пробелов: \n" + obj.changeStr);
+		
+
 	}
 }
 
 class OperationsOnStrings {
-	String[] words;			//	Массив содержащий все слова строки
+	String[] words;			//	Массив содержащий все слова исходной строки
 	String changeStr = "";	//	Записывается измененная строка, согласно задания
 
-	//	Разбиваееет строку на слова и записывает в массив
+	//	Разбивает строку на слова и записывает в массив
 	OperationsOnStrings(String str) {
 		words = new String[NumberOfWords(str)];	
 
@@ -48,12 +67,7 @@ class OperationsOnStrings {
 			}
 			else continue;			
 		}	
-	}	
-	
-	//	Выводит на консоль измененную строку
-	void ShowString() {
-		System.out.println("Изменённая строка: " + changeStr);
-	}
+	}		
 
 	//	String41	//
 	//	возвращает количество слов в строке
@@ -76,4 +90,24 @@ class OperationsOnStrings {
 		}
 		return count;
 	}
+
+	//	String45	//
+	//	ищет длину самого короткого слова
+	int ShortestWord() {
+		int min = words[0].length();
+		for (int i = 1; i < words.length; i++)
+			if (min > words[i].length()) min = words[i].length();
+		return min;
+	}
+
+	//	String47	//
+	//	создает строку с заданным разделителем
+	void Delimiter(String str) {
+		for (int i = 0; i < words.length; i++) {
+			changeStr += words[i];
+			if (i == (words.length - 1)) continue;
+			changeStr += str;
+		}
+	}
+
 }
